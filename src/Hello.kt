@@ -1,9 +1,12 @@
 import kotlin.random.Random
 
+val decorations = listOf("Камень", "Замок", "Дерево", "Солдатик", "Цветок")
+
+
 fun main(args: Array<String>) {
 //    val isUnit = println("Expression")
     //println(isUnit)
-
+    val decorations = listOf("Камень", "Замок", "Дерево", "Солдатик", "Цветок", "Кактус")
     val temperature = 10
     val isHot = temperature > 50
     //println(isHot)
@@ -14,6 +17,38 @@ fun main(args: Array<String>) {
     swim()
     swim("медленно")
     swim(speed = "очень быстро")
+
+    // eager, creates a new list
+    val eager = decorations.filter { it[0] == 'К' }
+
+    // lazy, will wait until asked to evaluate
+    val filtered = decorations.asSequence().filter { it[0] == 'К' }
+
+    // force evaluation of the lazy list
+    val newList = filtered.toList()
+
+    val lazyMap = decorations.asSequence().map {
+        println("access: $it")
+        it
+    }
+
+    val lazyMap2 = decorations.asSequence().filter { it[0] == 'К' }.map {
+        println("access: $it")
+        it
+    }
+
+    println("eager: $eager")
+    println("filtered: $filtered")
+    println("newList: $newList")
+
+    println("lazy: $lazyMap")
+    println("-----")
+    println("first: ${lazyMap.first()}")
+    println("-----")
+    println("all: ${lazyMap.toList()}")
+    println("-----")
+    println("filtered: ${lazyMap2.toList()}")
+    //println(decorations.filter { it[0] == 'К' })
 }
 
 fun feedTheFish() {
