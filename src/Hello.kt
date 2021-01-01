@@ -49,6 +49,25 @@ fun main(args: Array<String>) {
     println("-----")
     println("filtered: ${lazyMap2.toList()}")
     //println(decorations.filter { it[0] == 'К' })
+
+    var dirtyLevel = 20
+    val waterFilter = { dirty: Int -> dirty / 2 }
+    println(waterFilter(dirtyLevel))
+
+    val waterFilterFun: (Int) -> Int = { dirty: Int -> dirty / 2 }
+    println(waterFilterFun(dirtyLevel))
+
+    fun updateDirty(dirty: Int, operation: (Int) -> Int): Int {
+        return operation(dirty)
+    }
+
+    fun increaseDirty(start: Int) = start + 1
+
+    println(updateDirty(30, waterFilterFun))
+    println(updateDirty(30, ::increaseDirty))
+
+    dirtyLevel = updateDirty(dirtyLevel) { dirtyLevel -> dirtyLevel + 23}
+    println(dirtyLevel)
 }
 
 fun feedTheFish() {
