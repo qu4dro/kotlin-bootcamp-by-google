@@ -54,7 +54,7 @@ fun main(args: Array<String>) {
     val waterFilter = { dirty: Int -> dirty / 2 }
     println(waterFilter(dirtyLevel))
 
-    val waterFilterFun: (Int) -> Int = { dirty: Int -> dirty / 2 }
+    val waterFilterFun: (Int) -> Int = { dirty -> dirty / 2 }
     println(waterFilterFun(dirtyLevel))
 
     fun updateDirty(dirty: Int, operation: (Int) -> Int): Int {
