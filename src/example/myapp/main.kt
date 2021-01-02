@@ -1,10 +1,25 @@
 package example.myapp
 
 fun buildAquarium() {
-    val myAquarium = Aquarium()
-    myAquarium.printSize()
-    myAquarium.height = 60
-    myAquarium.printSize()
+
+    // default height and length
+    val aquarium1 = Aquarium()
+    aquarium1.printSize()
+
+    // default width
+    val aquarium2 = Aquarium(height = 35, length = 60)
+    aquarium2.printSize()
+
+    // everything custom
+    val aquarium3 = Aquarium(width = 25, height = 35, length = 110)
+    aquarium3.printSize()
+
+    //second constructor
+    val aquarium4 = Aquarium(numberOfFish = 20)
+    aquarium4.printSize()
+    aquarium4.volume = 70
+    aquarium4.printSize()
+    //println("Объем: ${aquarium4.width * aquarium4.length * aquarium4.height / 1000} литров (init второго конструктора) ")
 }
 
 fun main() {
