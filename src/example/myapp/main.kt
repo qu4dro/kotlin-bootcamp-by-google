@@ -28,6 +28,18 @@ fun buildAquarium() {
     roundAquarium1.printSize()
 }
 
+fun makeFish() {
+    val shark = Shark()
+    val goldenFish = GoldenFish()
+
+    println("Акула: ${shark.color}")
+    println("Золотая рыбка: ${goldenFish.color}")
+
+    shark.eat()
+    goldenFish.eat()
+
+}
 fun main() {
-    buildAquarium()
+    //buildAquarium()
+    makeFish()
 }
