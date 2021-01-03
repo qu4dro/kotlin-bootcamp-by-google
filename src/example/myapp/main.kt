@@ -19,7 +19,13 @@ fun buildAquarium() {
     aquarium4.printSize()
     aquarium4.volume = 70
     aquarium4.printSize()
+
+    val aquarium5 = Aquarium(length = 25, width = 25, height = 40)
+    aquarium5.printSize()
     //println("Объем: ${aquarium4.width * aquarium4.length * aquarium4.height / 1000} литров (init второго конструктора) ")
+
+    val roundAquarium1 = RoundAquarium(diameter = 25, height = 40)
+    roundAquarium1.printSize()
 }
 
 fun main() {
