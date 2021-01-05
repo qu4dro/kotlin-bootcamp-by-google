@@ -66,8 +66,27 @@ fun main(args: Array<String>) {
     println(updateDirty(30, waterFilterFun))
     println(updateDirty(30, ::increaseDirty))
 
-    dirtyLevel = updateDirty(dirtyLevel) { dirtyLevel -> dirtyLevel + 23}
+    dirtyLevel = updateDirty(dirtyLevel) { dirtyLevel -> dirtyLevel + 23 }
     println(dirtyLevel)
+
+    //pairs and triples
+    val equipment = "fish net" to "catching fish"
+    println("${equipment.first} used to ${equipment.second}")
+
+    val numbers = Triple(1, 2, 3)
+    println(numbers.toString())
+    println(numbers.toList())
+
+    val equipment2 = ("fish net" to "catching fish") to "equipment"
+    println("${equipment2.first} is ${equipment2.second}")
+    println(equipment2.first.second)
+
+    val (tool, use) = equipment
+    println("$tool is used for $use")
+
+    val (n1, n2, n3) = numbers
+    println("$n1, $n2, $n3")
+
 }
 
 fun feedTheFish() {
