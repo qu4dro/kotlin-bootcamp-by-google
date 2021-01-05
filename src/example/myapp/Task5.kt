@@ -1,9 +1,18 @@
 package example.myapp
 
+const val rocks = 3
+
+object Constants {
+    const val CONST = "const"
+}
 class Task5 {
+    companion object {
+        const val COMP_CONST = "comp_const"
+    }
 }
 
 fun main() {
+    val rocks1 = Constants.CONST
     val list = mutableListOf<Int>()
     for (i in 1..99) {
         list.add(i)
@@ -34,7 +43,6 @@ fun main() {
     println(inventory.toString())
     inventory.remove("fish net")
     println(inventory.toString())
-
 
 
 }
