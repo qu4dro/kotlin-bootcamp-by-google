@@ -5,6 +5,7 @@ const val rocks = 3
 object Constants {
     const val CONST = "const"
 }
+
 class Task5 {
     companion object {
         const val COMP_CONST = "comp_const"
@@ -44,5 +45,31 @@ fun main() {
     inventory.remove("fish net")
     println(inventory.toString())
 
+    println("Тут есть пробелы?".hasSpaces())
+    println("Тут?".hasSpaces())
 
+    val aquariumPlant = AquariumPlant("green", 20)
+    val aquariumPlant2: AquariumPlant? = null
+    aquariumPlant2.pull()
+    aquariumPlant.pull()
+
+    println(aquariumPlant.isGreen)
+}
+
+//fun String.hasSpaces(): Boolean {
+//    val found = this.find { it == ' ' }
+//    return found != null
+//}
+
+fun String.hasSpaces(): Boolean = find { it == ' ' } != null
+
+open class AquariumPlant(val color: String, private val size: Int)
+
+class GreenLeafyPlant(size: Int) : AquariumPlant("green", size)
+
+val AquariumPlant.isGreen: Boolean
+    get() = color == "green"
+
+fun AquariumPlant?.pull() {
+    this?.apply { println("$this") }
 }
