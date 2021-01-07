@@ -16,7 +16,7 @@ annotation class OnSet
 
     @set:OnSet
     var needsFood: Boolean = false
-    
+
     fun trim() {}
     fun fertilize() {}
 }
@@ -34,7 +34,16 @@ fun testAnnotations2() {
     println(myAnnotationObject)
 }
 
+fun labels() {
+    outerLoop@ for (i in 1..100) {
+        print("$i ")
+        for (j in 1..100) {
+            if (i > 10) break@outerLoop
+        }
+    }
+}
 fun main() {
     testAnnotations()
     testAnnotations2()
+    labels()
 }
