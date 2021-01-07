@@ -19,13 +19,16 @@ fun genericExample() {
     println("water needs processing: ${aquarium.waterSupply.needsProcessing}")
 
     addItemTo(aquarium)
+    isWaterClean(aquarium)
+    println(aquarium.hasWaterSupplyOfType<TapWater>())
+    println(aquarium.waterSupply.isOfType<TapWater>())
 }
 
 open class WaterSupply(var needsProcessing: Boolean) {
 
 }
 
-class TapWater : WaterSupply(true) {
+class TapWater() : WaterSupply(true) {
     fun addChemicalCleaners() {
         needsProcessing = false
     }
@@ -39,7 +42,7 @@ class LakeWater : WaterSupply(true) {
     }
 }
 
-class Aquarium<out T : WaterSupply>(val waterSupply: T) {
+class Aquarium<T : WaterSupply>(val waterSupply: T) {
     fun addWater(cleaner: Cleaner<T>) {
         if (waterSupply.needsProcessing) {
             cleaner.clean(waterSupply)
@@ -49,9 +52,15 @@ class Aquarium<out T : WaterSupply>(val waterSupply: T) {
 //        println("adding water from $waterSupply")
 
     }
+
+
 }
 
-fun addItemTo(aquarium: Aquarium<WaterSupply>) = println("item added")
+fun <T : WaterSupply> addItemTo(aquarium: Aquarium<T>) = println("item added")
+
+fun <T : WaterSupply> isWaterClean(aquarium: Aquarium<T>) {
+    println("aquarium water is clean: ${!aquarium.waterSupply.needsProcessing}")
+}
 
 fun main() {
     genericExample()
@@ -66,3 +75,7 @@ class TapWaterCleaner : Cleaner<TapWater> {
         waterSupply.addChemicalCleaners()
     }
 }
+
+inline fun <reified T : WaterSupply> WaterSupply.isOfType() = this is T
+
+inline fun <reified R : WaterSupply> Aquarium<*>.hasWaterSupplyOfType() = waterSupply is R
